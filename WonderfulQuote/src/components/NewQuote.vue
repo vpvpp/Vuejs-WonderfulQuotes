@@ -5,36 +5,31 @@
         <div class="form-group purple-border">
           <textarea class="form-control" v-model="newquotevalue"></textarea>
         </div>
-
         <button @click.prevent="CreateNew" class="btn btn-success">
           Add Quote
         </button>
       </div>
     </form>
-
-
   </div>
 </template>
 
 <script>
 export default {
-
-
   data() {
     return {
-      newquotevalue: ''
+      newquotevalue: "",
     };
   },
 
-  methods:{
-    CreateNew(){
-      this.$emit('quoteadded',this.newquotevalue); 
-      this.newquotevalue=''
-    }
-  }
-
-
-
+  methods: {
+    CreateNew() {
+      if(this.newquotevalue != ""){
+         this.$emit("quoteadded", this.newquotevalue);
+      this.newquotevalue = "";
+      }
+      
+    },
+  },
 };
 </script>
 

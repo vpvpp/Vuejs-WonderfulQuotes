@@ -1,5 +1,7 @@
 <template>
-    <div class="container">
+   <div>
+  <appHeader :QuotesCount="Quotes.length" :MaxQuotes="MaxQuote"></appHeader>
+   <div class="container">
    
    <appNewQuote @quoteadded="RecivingQuote"> </appNewQuote>
    <br> 
@@ -10,6 +12,7 @@
         </div>
     </div>
     </div>
+    </div>
 
 
 </template>
@@ -18,11 +21,11 @@
 
 import grid from './components/QuoteGrid.vue'
 import newQuote from './components/NewQuote.vue'
-
+import header from './components/Header.vue'
     export default {
         data(){
             return{
-                maxQuote:10,
+                MaxQuote:10,
                 Quotes:[
                  'Just a quote to see something'
                 ]
@@ -30,10 +33,14 @@ import newQuote from './components/NewQuote.vue'
         },
         components:{
             'appQuoteGrid': grid,
-            'appNewQuote':newQuote
+            'appNewQuote':newQuote,
+            'appHeader': header
         },
         methods:{
             RecivingQuote(newincomingquote){
+                if(this.Quotes.length >= this.MaxQuote){
+                    return alert('please delete some quotes first')
+                }
                 this.Quotes.push(newincomingquote);
             },
             DelQuote(index){
